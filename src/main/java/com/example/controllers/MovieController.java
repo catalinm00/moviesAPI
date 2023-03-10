@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.models.Movie;
@@ -15,10 +16,10 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/{title}")
-    public Movie[] getMovie(@PathVariable String title) {
+    @GetMapping("")
+    public Movie[] getMovie(@RequestParam(required = true) String title, @RequestParam(required = false, defaultValue = "1") String page) {
 
-        return movieService.getByTitle(title);
+        return movieService.getByTitle(title,page);
     }
 
     @GetMapping("/popular")
@@ -26,8 +27,8 @@ public class MovieController {
         return movieService.getPopular();
     }
 
-    @GetMapping("/{id}/details")
-    public Movie getMovieDetails(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public Movie getMovieDetails(@PathVariable String id) {
         return movieService.getById(id);
     }
 

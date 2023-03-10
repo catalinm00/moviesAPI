@@ -1,8 +1,5 @@
 package com.example.services;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -15,14 +12,14 @@ public class MovieService {
     private final String baseUrl = "https://api.themoviedb.org/3/";
     WebClient.Builder builder = WebClient.builder();
 
-    public Movie[] getByTitle(String title) {
+    public Movie[] getByTitle(String title, String page) {
 
         try {
             Response resp = builder
                     .baseUrl(baseUrl)
                     .build()
                     .get()
-                    .uri("search/movie?api_key=" + apiKey + "&language=en-US" + "&query=" + title)
+                    .uri("search/movie?api_key=" + apiKey + "&language=en-US" + "&query=" + title + "&page=" + page)
                     .retrieve()
                     .bodyToMono(Response.class)
                     .block();
@@ -34,7 +31,7 @@ public class MovieService {
         return null;
     }
 
-    public Movie getById(int id) {
+    public Movie getById(String id) {
         try {
             Movie resp = builder
                     .baseUrl(baseUrl)
