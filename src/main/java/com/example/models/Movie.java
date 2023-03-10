@@ -1,8 +1,5 @@
 package com.example.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,5 +14,5 @@ public class Movie {
     private int vote_count;
     private int[] genre_ids;
     private String release_date;
- 
+    private Language[] spoken_languages;
 }

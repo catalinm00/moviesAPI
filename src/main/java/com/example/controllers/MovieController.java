@@ -17,9 +17,9 @@ public class MovieController {
     private MovieService movieService;
 
     @GetMapping("")
-    public Movie[] getMovie(@RequestParam(required = true) String title, @RequestParam(required = false, defaultValue = "1") String page) {
-
-        return movieService.getByTitle(title,page);
+    public Movie[] getMovie(@RequestParam(required = true) String title,
+            @RequestParam(required = false, defaultValue = "1") String page) {
+        return movieService.getByTitle(title, page);
     }
 
     @GetMapping("/popular")
