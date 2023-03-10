@@ -13,7 +13,6 @@ public class MovieService {
     WebClient.Builder builder = WebClient.builder();
 
     public Movie[] getByTitle(String title, String page) {
-
         try {
             Response resp = builder
                     .baseUrl(baseUrl)
